@@ -1,0 +1,26 @@
+[tools]
+maven = "latest"
+
+[env]
+_.file = ".env"
+
+[tasks.test]
+alias = "test"
+description = "Run Test"
+run = "mvn clean test"
+
+[tasks.build]
+alias = "build"
+description = "Build the Project Image"
+run = "mvn clean package -DskipTests"
+
+[tasks.run]
+alias = "run"
+description = "Run Spring App"
+run = "mvn clean spring-boot:run -Dspring-boot.run.arguments='--server.port={{arg(i=0, default=\"8000\")}}'"
+
+[tasks.docker_run]
+hide = true
+
+[tasks.docker_stop]
+hide = true

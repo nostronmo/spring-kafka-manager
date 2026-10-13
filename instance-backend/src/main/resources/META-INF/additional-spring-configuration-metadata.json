@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "kafka.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.enabled'"
+  },
+  {
+    "name": "kafka.topics.services.status",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.topics.services.status'"
+  },
+  {
+    "name": "kafka.topics.services.timer",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.topics.services.timer'"
+  },
+  {
+    "name": "application.date.format",
+    "type": "java.lang.String",
+    "description": "A description for 'application.date.format'"
+  },
+  {
+    "name": "application.page.size",
+    "type": "java.lang.String",
+    "description": "A description for 'application.page.size'"
+  },
+  {
+    "name": "kafka.config.global.retention-time",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.config.global.retention-time'"
+  },
+  {
+    "name": "kafka.config.global.size",
+    "type": "java.lang.String",
+    "description": "A description for 'kafka.config.global.size'"
+  },
+  {
+    "name": "quartz.job.services.name",
+    "type": "java.lang.String",
+    "description": "A description for 'quartz.job.services.name'"
+  }
+]}

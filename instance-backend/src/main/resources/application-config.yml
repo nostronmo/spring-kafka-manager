@@ -1,0 +1,68 @@
+spring:
+  main:
+    lazy-initialization: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  threads:
+    virtual:
+      enabled: true
+  kafka:
+    producer:
+      properties:
+        acks: all
+        enable:
+          idempotence: true
+        max:
+          in:
+            flight:
+              requests:
+                per:
+                  connection: 5
+      retries: 3
+    consumer:
+      enable-auto-commit: false
+    listener:
+      immediate-stop: true
+      ack-mode: RECORD
+      concurrency: 3
+  quartz:
+    scheduler-name: "KAFKA-SCHEDULER"
+    job-store-type: jdbc
+    jdbc:
+      comment-prefix:
+      - "KAFKA SERVICES Scheduler"
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+            instanceName: "CentralScheduler"
+          jobStore:
+            tablePrefix: QRTZ_
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            useProperties: false
+            isClustered: false
+            clusterCheckinInterval: 20000
+            misfireThreshold: 600000
+
+quartz:
+  job:
+    services:
+      name: "dynamic-jobs"
+
+kafka:
+  config:
+    global:
+      retention-time: 3D
+      size: 256MB
+
+application:
+  date:
+    format: yyyy/MM/dd/HH/mm/  # "year/month/day/hour/minute"
+  page:
+    size: 20

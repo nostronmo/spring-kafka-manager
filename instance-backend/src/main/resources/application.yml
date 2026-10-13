@@ -1,0 +1,43 @@
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+  profiles:
+    active: config, ${PROFILE:test}
+  application:
+    name: instance-manager
+
+server:
+  port: ${INSTANCE_PORT:8000}
+  shutdown: graceful
+  forward-headers-strategy: native #framework
+  
+logging:
+  pattern:
+    console: '%n %d{HH:mm:ss} | %highlight(%-5level) | %cyan(%logger{30}) | %msg'
+  level:
+    root: INFO
+    org:
+      springframework: warn
+      boot: error
+      apache:
+        kafka: error
+  file:
+    name: app.log
+      
+management:
+  metrics:
+    enable:
+      tomcat: false
+      jvm:
+        memory:
+          pool: false
+        buffer: false
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: false
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"

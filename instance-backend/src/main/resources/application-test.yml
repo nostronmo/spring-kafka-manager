@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    name: "Instancer Manager"
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:postgres}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 80000
+      idle-timeout: 30000
+      minimum-idle: 10
+      maximum-pool-size: 100
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost:9092}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+
+kafka:
+  enabled: true
+  topics:
+    services:
+      status: ${KAFKA_SERVICES_STATUS:services-status}
+      timer: ${KAFKA_SERVICES_TIMER:services-timer}
